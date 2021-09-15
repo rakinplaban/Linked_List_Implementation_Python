@@ -65,6 +65,43 @@ class Linkedlist:
                 temp.next = None
             self.count -= 1
 
+    def deleteTargetdeNode(self,target):
+        if self.count == 0:
+            print("Under Flow!")
+        else:
+            temp = self.p
+            flag = 0
+            if self.p.val == target:
+                #print(type(temp))
+                self.deleteNodeFirst()
+            else:
+                while temp.next is not None:
+                    if temp.val == target:
+                        flag = 1
+                        break;
+                    temp = temp.next
+
+                if(temp.val == target and temp.next is None):
+                    temp1 = self.p
+                    while temp1.next.val != temp.val:
+                        temp1 = temp1.next
+                    if temp1.next.val == temp.val:
+                        del(temp1.next)
+                    temp1.next = None
+                    self.count -= 1
+
+                elif flag == 1:
+                    temp1 = temp.next
+                    del(temp)
+                    temp2 = self.p
+                    while temp2.next.val != target:
+                        temp2 = temp2.next
+                    if temp2.next.val == target:
+                        temp2.next = temp1
+                    self.count -= 1
+                else:
+                    print("No data found to be deleted!")
+
     def display(self):
         temp = self.p
         while temp is not None:
@@ -75,6 +112,10 @@ class Linkedlist:
 l1 = Linkedlist()
 l1.insertNodeFirst(12)
 l1.insertNodeFirst(13)
+l1.insertNodeFirst(2)
+l1.insertNodeFirst(33)
+l1.insertNodeFirst(25)
+l1.insertNodeFirst(135)
 l1.display()
 print()
 item = int(input())
@@ -93,5 +134,9 @@ l1.deleteNodeFirst()
 l1.display()
 print("\nThe number of node is : ",l1.count)
 l1.deleteNodeLast()
+l1.display()
+print("\nThe number of node is : ",l1.count)
+ditem = int(input())
+l1.deleteTargetdeNode(ditem)
 l1.display()
 print("\nThe number of node is : ",l1.count)
