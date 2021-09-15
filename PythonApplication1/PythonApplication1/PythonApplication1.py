@@ -108,6 +108,19 @@ class Linkedlist:
             print(temp.val,end=" ")
             temp = temp.next
 
+    def findposition(self,target):
+        pos = 0
+        temp = self.p
+        while temp.next is not None:
+            if temp.val == target:
+                pos += 1
+                break
+            pos += 1
+            temp = temp.next
+
+        return pos
+
+
 
 l1 = Linkedlist()
 l1.insertNodeFirst(12)
@@ -140,3 +153,8 @@ ditem = int(input())
 l1.deleteTargetdeNode(ditem)
 l1.display()
 print("\nThe number of node is : ",l1.count)
+
+print("\nPlease Enter a node to find its position: ")
+s = int(input())
+ts = l1.findposition(s)
+print("The node ",s," is in ",ts,"th position")
